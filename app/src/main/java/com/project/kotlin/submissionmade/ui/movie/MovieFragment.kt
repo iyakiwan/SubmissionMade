@@ -7,17 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.project.kotlin.submissionmade.core.data.Resource
 import com.project.kotlin.submissionmade.core.ui.MovieAdapter
-import com.project.kotlin.submissionmade.core.ui.ViewModelFactory
 import com.project.kotlin.submissionmade.databinding.FragmentMovieBinding
 import com.project.kotlin.submissionmade.ui.detail.DetailActivity
 import com.stone.vega.library.VegaLayoutManager
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
 
-    private lateinit var movieViewModel: MovieViewModel
+    private val movieViewModel: MovieViewModel by viewModel()
 
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
@@ -39,9 +38,6 @@ class MovieFragment : Fragment() {
                 intent.putExtra(DetailActivity.EXTRA_DATA, movieId)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            movieViewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
 
             movieViewModel.listMovies.observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {

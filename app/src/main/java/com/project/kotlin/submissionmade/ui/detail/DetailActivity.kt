@@ -7,20 +7,20 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.project.kotlin.submissionmade.R
 import com.project.kotlin.submissionmade.core.domain.model.Movie
-import com.project.kotlin.submissionmade.core.ui.ViewModelFactory
 import com.project.kotlin.submissionmade.databinding.ActivityDetailBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
+    private val detailViewModel: DetailViewModel by viewModel()
+
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var detailViewModel: DetailViewModel
     private lateinit var menu: Menu
     private lateinit var movie: Movie
 
@@ -35,9 +35,6 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailViewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val detailMovie = intent.getStringExtra(EXTRA_DATA)
         detailViewModel.getDetailMovie(detailMovie.toString()).observe(this, { detail ->
