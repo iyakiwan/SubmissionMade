@@ -15,4 +15,6 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 
+    implementation 'com.stone.vega.library:VegaLayoutManager:1.0.6'
+
 }

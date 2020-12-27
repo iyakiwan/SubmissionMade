@@ -9,4 +9,5 @@
     <string name="overview">Overview</string>
     <string name="poster_backdrop">Poster Backdrop</string>
     <string name="menu_detail_fav">Favorite Detail</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
