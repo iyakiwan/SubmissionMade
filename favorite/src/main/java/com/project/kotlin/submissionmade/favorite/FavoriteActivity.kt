@@ -21,6 +21,8 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "Favorite Movie"
+
         loadKoinModules(favoriteModule)
 
         val movieAdapter = MovieAdapter()
