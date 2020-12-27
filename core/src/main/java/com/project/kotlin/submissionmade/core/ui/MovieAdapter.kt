@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.project.kotlin.submissionmade.R
+import com.project.kotlin.submissionmade.core.R
+import com.project.kotlin.submissionmade.core.databinding.ItemMovieBinding
 import com.project.kotlin.submissionmade.core.domain.model.Movie
-import com.project.kotlin.submissionmade.databinding.ItemMovieBinding
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
