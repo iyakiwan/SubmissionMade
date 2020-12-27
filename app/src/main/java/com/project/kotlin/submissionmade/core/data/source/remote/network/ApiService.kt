@@ -8,9 +8,9 @@ import retrofit2.http.Query
 interface ApiService {
     //Get Data Movie
     @GET("movie/popular")
-    fun getListMovie(
+    suspend fun getListMovie(
         @Query("api_key") apiKey: String?,
         @Query("language") language: String?,
         @Query("page") page: String?
-    ): Call<ListMovieResponse>
+    ): ListMovieResponse
 }
