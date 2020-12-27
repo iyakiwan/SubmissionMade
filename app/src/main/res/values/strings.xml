@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SubmissionMade</string>
+    <string name="title_list_movie">List Movie</string>
+    <string name="title_favorite_movie">List Favorite Movie</string>
+    <string name="cth_dec_img">Desc Image</string>
+    <string name="language">Language</string>
+    <string name="adult">Adult</string>
+    <string name="popularity">Popularity</string>
+    <string name="overview">Overview</string>
+    <string name="poster_backdrop">Poster Backdrop</string>
+    <string name="menu_detail_fav">Favorite Detail</string>
+</resources>

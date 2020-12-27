@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_detail_poster"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/cth_dec_img"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_detail_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_detail_poster"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Avenger: End Game" />
+
+        <TextView
+            android:id="@+id/tv_detail_release"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_detail_poster"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
+            tools:text="January 23, 2018" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/cth_dec_img"
+            android:src="@drawable/star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_detail_poster"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_detail_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/table_layout"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release"
+            app:layout_constraintVertical_bias="0.04000002"
+            tools:text="8.5" />
+
+        <TableLayout
+            android:id="@+id/table_layout"
+            style="@style/Standard_Layout"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_detail_poster">
+
+            <TableRow style="@style/TableRow">
+
+                <TextView
+                    style="@style/TableHead"
+                    android:text="@string/language" />
+
+                <TextView
+                    android:id="@+id/tv_detail_language"
+                    style="@style/TableDetail"
+                    tools:text="English" />
+            </TableRow>
+
+            <TableRow style="@style/TableRow">
+
+                <TextView
+                    android:id="@+id/tv_head_adult"
+                    style="@style/TableHead"
+                    android:text="@string/adult" />
+
+                <TextView
+                    android:id="@+id/tv_detail_adult"
+                    style="@style/TableDetail"
+                    android:layout_weight="2"
+                    tools:text="Yes" />
+            </TableRow>
+
+            <TableRow style="@style/TableRow">
+
+                <TextView
+                    style="@style/TableHead"
+                    android:text="@string/popularity" />
+
+                <TextView
+                    android:id="@+id/tv_detail_popularity"
+                    style="@style/TableDetail"
+                    tools:text="1h 55m" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tv_head_backdrop"
+            style="@style/Standard_Layout"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/poster_backdrop"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/table_layout" />
+
+        <ImageView
+            android:id="@+id/img_detail_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_head_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_head_backdrop"
+            app:layout_constraintTop_toBottomOf="@+id/tv_head_backdrop"
+            android:contentDescription="@string/cth_dec_img" />
+
+        <TextView
+            android:id="@+id/tv_head_overview"
+            style="@style/Standard_Layout"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/overview"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_detail_backdrop" />
+
+        <TextView
+            android:id="@+id/tv_detail_desc"
+            style="@style/Standard_Layout"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:lineSpacingMultiplier="1"
+            android:text="@string/cth_dec_img"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_head_overview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
