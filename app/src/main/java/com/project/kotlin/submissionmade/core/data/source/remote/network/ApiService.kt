@@ -13,12 +13,4 @@ interface ApiService {
         @Query("language") language: String?,
         @Query("page") page: String?
     ): Call<ListMovieResponse>
-
-    //Get Data Detail Movie
-    /*@GET("movie/{movieId}")
-    fun getDetailMovie(
-        @Path("movieId") movieId: String?,
-        @Query("api_key") apiKey: String?,
-        @Query("language") language: String?
-    ): Call<DetailMovieResponse?>?*/
 }

@@ -6,6 +6,8 @@ import com.project.kotlin.submissionmade.core.data.source.local.LocalDataSource
 import com.project.kotlin.submissionmade.core.data.source.local.room.MovieDatabase
 import com.project.kotlin.submissionmade.core.data.source.remote.RemoteDataSource
 import com.project.kotlin.submissionmade.core.data.source.remote.network.ApiConfig
+import com.project.kotlin.submissionmade.core.domain.usecase.MovieInteractor
+import com.project.kotlin.submissionmade.core.domain.usecase.MovieUseCase
 import com.project.kotlin.submissionmade.core.utils.AppExecutors
 
 object Injection {
@@ -17,5 +19,10 @@ object Injection {
         val appExecutors = AppExecutors()
 
         return MovieRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
+    }
+
+    fun provideMovieUseCase(context: Context): MovieUseCase {
+        val repository = provideRepository(context)
+        return MovieInteractor(repository)
     }
 }

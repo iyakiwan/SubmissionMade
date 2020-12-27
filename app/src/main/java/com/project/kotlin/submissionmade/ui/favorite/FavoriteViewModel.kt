@@ -1,8 +1,8 @@
 package com.project.kotlin.submissionmade.ui.favorite
 
 import androidx.lifecycle.ViewModel
-import com.project.kotlin.submissionmade.core.data.MovieRepository
+import com.project.kotlin.submissionmade.core.domain.usecase.MovieUseCase
 
-class FavoriteViewModel(movieRepository: MovieRepository) : ViewModel() {
-    val favoriteMovie = movieRepository.getFavoriteMovie()
+class FavoriteViewModel(movieUseCase: MovieUseCase) : ViewModel() {
+    val favoriteMovie = movieUseCase.getFavoriteMovie()
 }

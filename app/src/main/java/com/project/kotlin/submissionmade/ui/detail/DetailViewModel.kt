@@ -1,11 +1,11 @@
 package com.project.kotlin.submissionmade.ui.detail
 
 import androidx.lifecycle.ViewModel
-import com.project.kotlin.submissionmade.core.data.MovieRepository
-import com.project.kotlin.submissionmade.core.data.source.local.entity.MovieEntity
+import com.project.kotlin.submissionmade.core.domain.model.Movie
+import com.project.kotlin.submissionmade.core.domain.usecase.MovieUseCase
 
-class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    fun setFavoriteMovie(movie: MovieEntity, newStatus:Boolean) = movieRepository.setFavoriteMovie(movie, newStatus)
+class DetailViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
+    fun setFavoriteMovie(movie: Movie, newStatus:Boolean) = movieUseCase.setFavoriteMovie(movie, newStatus)
 
-    fun getDetailMovie(movieId: String) = movieRepository.getDetailMovie(movieId)
+    fun getDetailMovie(movieId: String) = movieUseCase.getDetailMovie(movieId)
 }

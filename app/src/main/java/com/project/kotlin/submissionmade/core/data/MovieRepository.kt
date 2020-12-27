@@ -1,11 +1,13 @@
 package com.project.kotlin.submissionmade.core.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.project.kotlin.submissionmade.core.data.source.local.LocalDataSource
-import com.project.kotlin.submissionmade.core.data.source.local.entity.MovieEntity
 import com.project.kotlin.submissionmade.core.data.source.remote.RemoteDataSource
 import com.project.kotlin.submissionmade.core.data.source.remote.network.ApiResponse
 import com.project.kotlin.submissionmade.core.data.source.remote.response.MovieResponse
+import com.project.kotlin.submissionmade.core.domain.model.Movie
+import com.project.kotlin.submissionmade.core.domain.repository.IMovieRepository
 import com.project.kotlin.submissionmade.core.utils.AppExecutors
 import com.project.kotlin.submissionmade.core.utils.DataMapper
 
@@ -13,7 +15,7 @@ class MovieRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) {
+) : IMovieRepository {
 
     companion object {
         @Volatile
@@ -29,33 +31,40 @@ class MovieRepository private constructor(
             }
     }
 
-    fun getAllMovies(): LiveData<Resource<List<MovieEntity>>> =
-        object : NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<MovieEntity>> {
-                return localDataSource.getAllMovie()
+    override fun getAllMovies(): LiveData<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<Movie>> {
+                return Transformations.map(localDataSource.getAllMovie()) {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<MovieEntity>?): Boolean =
+            override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> =
                 remoteDataSource.getAllMovie()
 
             override fun saveCallResult(data: List<MovieResponse>) {
-                val tourismList = DataMapper.mapResponsesToEntities(data)
-                localDataSource.insertMovie(tourismList)
+                val movieList = DataMapper.mapResponsesToEntities(data)
+                localDataSource.insertMovie(movieList)
             }
         }.asLiveData()
 
-    fun getDetailMovie(movieId: String?): LiveData<MovieEntity> {
-        return localDataSource.getDetailMovie(movieId)
+    override fun getDetailMovie(movieId: String?): LiveData<Movie> {
+        return Transformations.map(localDataSource.getDetailMovie(movieId)) {
+            DataMapper.mapEntityToDomain(it)
+        }
     }
 
-    fun getFavoriteMovie(): LiveData<List<MovieEntity>> {
-        return localDataSource.getFavoriteMovie()
+    override fun getFavoriteMovie(): LiveData<List<Movie>> {
+        return Transformations.map(localDataSource.getFavoriteMovie()) {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    fun setFavoriteMovie(tourism: MovieEntity, state: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(tourism, state) }
+    override fun setFavoriteMovie(movie: Movie, state: Boolean) {
+        val movieEntity = DataMapper.mapDomainToEntity(movie)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 }

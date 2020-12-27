@@ -3,13 +3,13 @@ package com.project.kotlin.submissionmade.core.ui
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.project.kotlin.submissionmade.core.data.MovieRepository
 import com.project.kotlin.submissionmade.core.di.Injection
+import com.project.kotlin.submissionmade.core.domain.usecase.MovieUseCase
 import com.project.kotlin.submissionmade.ui.detail.DetailViewModel
 import com.project.kotlin.submissionmade.ui.favorite.FavoriteViewModel
 import com.project.kotlin.submissionmade.ui.movie.MovieViewModel
 
-class ViewModelFactory private constructor(private val movieRepository: MovieRepository) :
+class ViewModelFactory private constructor(private val movieUseCase: MovieUseCase) :
     ViewModelProvider.NewInstanceFactory() {
 
     companion object {
@@ -21,7 +21,7 @@ class ViewModelFactory private constructor(private val movieRepository: MovieRep
                 ?: synchronized(this) {
                 instance
                     ?: ViewModelFactory(
-                        Injection.provideRepository(
+                        Injection.provideMovieUseCase(
                             context
                         )
                     )
@@ -32,13 +32,13 @@ class ViewModelFactory private constructor(private val movieRepository: MovieRep
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
-                MovieViewModel(movieRepository) as T
+                MovieViewModel(movieUseCase) as T
             }
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-                FavoriteViewModel(movieRepository) as T
+                FavoriteViewModel(movieUseCase) as T
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
-                DetailViewModel(movieRepository) as T
+                DetailViewModel(movieUseCase) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

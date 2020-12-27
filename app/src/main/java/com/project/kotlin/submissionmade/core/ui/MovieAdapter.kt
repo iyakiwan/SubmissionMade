@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.kotlin.submissionmade.R
-import com.project.kotlin.submissionmade.core.data.source.local.entity.MovieEntity
+import com.project.kotlin.submissionmade.core.domain.model.Movie
 import com.project.kotlin.submissionmade.databinding.ItemMovieBinding
 import java.text.DateFormat
 import java.text.ParseException
@@ -16,10 +16,10 @@ import java.util.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
-    private var listData = ArrayList<MovieEntity>()
+    private var listData = ArrayList<Movie>()
     var onItemClick: ((String) -> Unit)? = null
 
-    fun setData(newListData: List<MovieEntity>?) {
+    fun setData(newListData: List<Movie>?) {
         if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
@@ -45,7 +45,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemMovieBinding.bind(itemView)
         @SuppressLint("SimpleDateFormat")
-        fun bind(data: MovieEntity) {
+        fun bind(data: Movie) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load("https://image.tmdb.org/t/p/w342${data.poster}")

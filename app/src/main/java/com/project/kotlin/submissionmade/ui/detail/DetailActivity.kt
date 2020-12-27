@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.project.kotlin.submissionmade.R
-import com.project.kotlin.submissionmade.core.data.source.local.entity.MovieEntity
+import com.project.kotlin.submissionmade.core.domain.model.Movie
 import com.project.kotlin.submissionmade.core.ui.ViewModelFactory
 import com.project.kotlin.submissionmade.databinding.ActivityDetailBinding
 import java.text.DateFormat
@@ -22,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var menu: Menu
-    private lateinit var movieEntity: MovieEntity
+    private lateinit var movie: Movie
 
     private var statusFavorite: Boolean = false
 
@@ -48,10 +48,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun showDetailMovie(detailMovie: MovieEntity?) {
+    private fun showDetailMovie(detailMovie: Movie?) {
         title = detailMovie?.title
         if (detailMovie != null) {
-            movieEntity = detailMovie
+            movie = detailMovie
         }
 
         Glide.with(this@DetailActivity)
@@ -93,7 +93,7 @@ class DetailActivity : AppCompatActivity() {
         inflater.inflate(R.menu.detail_menu, menu)
         if (menu != null) {
             this.menu = menu
-            statusFavorite = movieEntity.isFavorite
+            statusFavorite = movie.isFavorite
             setStatusFavorite(statusFavorite)
         }
 
@@ -104,7 +104,7 @@ class DetailActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_detail_favorite -> {
                 statusFavorite = !statusFavorite
-                movieEntity.let { detailViewModel.setFavoriteMovie(it, statusFavorite) }
+                movie.let { detailViewModel.setFavoriteMovie(it, statusFavorite) }
                 setStatusFavorite(statusFavorite)
                 if (statusFavorite)
                     Toast.makeText(this, "Movie save to favorite", Toast.LENGTH_SHORT).show()
