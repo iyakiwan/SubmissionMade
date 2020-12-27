@@ -1,12 +1,11 @@
 package com.project.kotlin.submissionmade.core.domain.usecase
 
-
-import com.project.kotlin.submissionmade.core.data.MovieRepository
 import com.project.kotlin.submissionmade.core.data.Resource
 import com.project.kotlin.submissionmade.core.domain.model.Movie
+import com.project.kotlin.submissionmade.core.domain.repository.IMovieRepository
 import kotlinx.coroutines.flow.Flow
 
-class MovieInteractor (private val movieRepository: MovieRepository): MovieUseCase {
+class MovieInteractor (private val movieRepository: IMovieRepository): MovieUseCase {
 
     override fun getAllMovies(): Flow<Resource<List<Movie>>> = movieRepository.getAllMovies()
 

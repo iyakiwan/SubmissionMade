@@ -11,7 +11,7 @@ import com.project.kotlin.submissionmade.core.domain.usecase.MovieUseCase
 import com.project.kotlin.submissionmade.core.utils.AppExecutors
 
 object Injection {
-    fun provideRepository(context: Context): MovieRepository {
+    private fun provideRepository(context: Context): MovieRepository {
         val database = MovieDatabase.getInstance(context)
 
         val remoteDataSource = RemoteDataSource.getInstance(ApiConfig.provideApiService())
