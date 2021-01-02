@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.project.kotlin.submissionmade.core.data.Resource
 import com.project.kotlin.submissionmade.core.ui.MovieAdapter
@@ -19,7 +18,7 @@ class MovieFragment : Fragment() {
     private val movieViewModel: MovieViewModel by viewModel()
 
     private var _binding: FragmentMovieBinding? = null
-    private val binding get() = _binding!!
+    private val binding  get() = _binding!!
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,9 +48,8 @@ class MovieFragment : Fragment() {
                         }
                         is Resource.Error -> {
                             binding.pbMovie.visibility = View.GONE
-                            Toast.makeText(context, "Oops.. something went wrong", Toast.LENGTH_SHORT).show()
-//                            binding.viewError.root.visibility = View.VISIBLE
-//                            binding.viewError.tvError.text = movies.message ?: getString(R.string.something_wrong)
+                            binding.viewError.root.visibility = View.VISIBLE
+                            binding.viewError.tvError.text = movies.message ?: "Oops.. something went wrong"
                         }
                     }
                 }

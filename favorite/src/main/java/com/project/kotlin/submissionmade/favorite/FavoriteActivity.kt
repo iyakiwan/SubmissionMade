@@ -3,6 +3,7 @@ package com.project.kotlin.submissionmade.favorite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.project.kotlin.submissionmade.core.ui.MovieAdapter
 import com.project.kotlin.submissionmade.favorite.databinding.ActivityFavoriteBinding
@@ -34,7 +35,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         favoriteViewModel.favoriteMovie.observe(this, { dataMovie ->
             movieAdapter.setData(dataMovie)
-            if (dataMovie.isEmpty()) Toast.makeText(this, "Data is Empty", Toast.LENGTH_SHORT).show()
+            binding.viewEmpty.viewEmpty.visibility = if (dataMovie.isNotEmpty()) View.GONE else View.VISIBLE
         })
 
         with(binding.rvFavorite) {

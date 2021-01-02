@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cth_dec_img">Desc Image</string>
+    <string name="no_data">Empty Data</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
 </resources>
