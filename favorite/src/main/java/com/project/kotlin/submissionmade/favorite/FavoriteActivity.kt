@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.project.kotlin.submissionmade.core.ui.MovieAdapter
 import com.project.kotlin.submissionmade.favorite.databinding.ActivityFavoriteBinding
 import com.project.kotlin.submissionmade.ui.detail.DetailActivity
